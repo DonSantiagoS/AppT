@@ -1,7 +1,11 @@
+using AppT.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Inyectando Servicios
+builder.Services.AddScoped<ServicioApi,ServicioApiImplementado>(); 
 
 var app = builder.Build();
 
