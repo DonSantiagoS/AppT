@@ -33,12 +33,11 @@ namespace AppT.Services
             List<Register> lista = new List<Register>();
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(url);
-            var response = await cliente.GetAsync("");
+            var response = await cliente.GetAsync("/search?q=apollo%2011");
 
             if (response.IsSuccessStatusCode) { 
                 var json_respuesta = await response.Content.ReadAsStringAsync();
-                var resultado = JsonConverter.DeserializeObject<ResultadoApi>(json_respuesta);
-                var resultado1 = JsonConverter.De
+                var resultado = JsonConvert.DeserializeObject<ResultadoApi>(json_respuesta);
                 lista = resultado.lista;
             }
             return lista;
@@ -50,7 +49,7 @@ namespace AppT.Services
             Register objeto = new Register();
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(url);
-            var response = await cliente.GetAsync($"{TitleRegister}");
+            var response = await cliente.GetAsync($"/search?q={TitleRegister}");
 
             if (response.IsSuccessStatusCode)
             {
